@@ -1,0 +1,26 @@
+{
+  "name": "@tsmean/resource",
+  "version": "2.0.3",
+  "description": "Service layer for generic resources",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pub": "git add --all && git commit -m update && npm version patch && npm publish && git push"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bersling/resource-module.git"
+  },
+  "keywords": [
+    "Resource",
+    "tsmean"
+  ],
+  "author": "bersling@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bersling/resource-module/issues"
+  },
+  "homepage": "https://github.com/bersling/resource-module#readme",
+  "dependencies": {
+    "@tsmean/utils": "^1.1.0"
+  }
+}

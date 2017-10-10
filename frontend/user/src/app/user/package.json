@@ -1,0 +1,26 @@
+{
+  "name": "@tsmean/user-angular",
+  "version": "1.0.4",
+  "description": "User module for the tsmean starter kit",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "author": "bersling@gmail.com",
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/common": "^4.2.5",
+    "@angular/core": "^4.2.5",
+    "@angular/forms": "^4.2.5",
+    "@angular/http": "^4.2.5",
+    "@angular/material": "^2.0.0-beta.7",
+    "@tsmean/resource": "^2.0.1",
+    "notify-angular": "^2.0.1",
+    "rxjs": "^5.4.1",
+    "zone.js": "^0.8.12"
+  },
+  "dependencies": {
+    "@tsmean/cookies": "^1.0.0",
+    "@tsmean/utils": "^1.1.1"
+  }
+}

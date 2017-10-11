@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
-import * as io from 'socket.io-client';
+import * as socketIo from 'socket.io-client';
 
 import { Router } from '@angular/router';
 import * as firebase from 'firebase/app';
@@ -134,9 +134,10 @@ export class GameComponent implements OnInit {
         game.world.setBounds(0, 0, WORLD_SIZE.w, WORLD_SIZE.h);
         game.camera.x = player.sprite.x - WINDOW_WIDTH/2;
         game.camera.y = player.sprite.y - WINDOW_HEIGHT/2;
-        socket = io(); // This triggers the 'connection' event on the server
+        socket = socketIo('http://localhost:3000'); // This triggers the 'connection' event on the server
         socket.emit('new-player',{x:player.sprite.x,y:player.sprite.y,angle:player.sprite.rotation,type:1})
         // Listen for other players connecting
+
         socket.on('update-players',function(players_data){
             var players_found = {};
             // Loop over all the player data received

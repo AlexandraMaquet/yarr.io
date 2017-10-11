@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth.service';
+import * as socketIo from 'socket.io-client';
 
 @Component({ 
   selector: 'app-root',
@@ -25,5 +26,12 @@ export class AppComponent {
 
   logout() {
     this.authService.logout();
+  }
+
+  ngOnInit():void {
+    const socket = socketIo('http://localhost:3000');
+
+    socket.on('hello', (data) => console.log(data));
+
   }
 }

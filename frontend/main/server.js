@@ -1,20 +1,22 @@
 // Run this with ts-node (https://github.com/TypeStrong/ts-node)
 
 const express = require('express');
-const path = require('path');
+const http = require('http');
+const socketIo = require('socket.io');
 
-const server = express();
+const app = express();
 
-const distPath = path.join(__dirname, '/dist');
+app.get('/', (req, res) => res.send("Hello World"))
 
-server.use(express.static(distPath));
+const server = http.Server(app);
+server.listen(3000);
 
-// redirect everything to index
-server.get('*', (req, res) => {
-  res.status(200).sendFile(path.join(distPath, 'index.html'));
-});
+const io = socketIo(server);
 
-const port = process.argv[2] || 4243;
-server.listen(port, function() {
-  console.log('server listening on port ' + port);
+io.on('connection', (socket) => {
+    console.log("New client has connected with id:", socket.id);
+    socket.emit('hello', {
+        greeting: 'hello Paul'
+    });
+
 });

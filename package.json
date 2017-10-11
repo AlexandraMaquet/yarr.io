@@ -2,7 +2,9 @@
   "name": "ts-mean",
   "version": "4.0.1",
   "description": "Boilerplate for a TS-MEAN App",
-  "dependencies": {},
+  "dependencies": {
+    "socket.io": "^2.0.3"
+  },
   "devDependencies": {
     "@types/node": "^8.0.15",
     "ts-node": "^3.2.1",

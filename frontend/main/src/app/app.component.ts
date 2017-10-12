@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth.service';
 import * as socketIo from 'socket.io-client';
+import { environment } from '../environments/environment';
 
 @Component({ 
   selector: 'app-root',
@@ -29,7 +30,7 @@ export class AppComponent {
   }
 
   ngOnInit():void {
-    const socket = socketIo('http://localhost:3000');
+    const socket = socketIo(environment.socketHost);
 
     socket.on('hello', (data) => console.log(data));
 

@@ -7,5 +7,6 @@ export const environment = {
     projectId: "gonpthegame",
     storageBucket: "gonpthegame.appspot.com",
     messagingSenderId: "540782350272"
-  }
+  },
+  socketHost : "http://yarr.paulcailly.fr:3000"
 };

@@ -12,5 +12,6 @@ export const environment = {
     projectId: "gonpthegame",
     storageBucket: "gonpthegame.appspot.com",
     messagingSenderId: "540782350272"
-  }
+  },
+  socketHost : "http://localhost:3000"
 };

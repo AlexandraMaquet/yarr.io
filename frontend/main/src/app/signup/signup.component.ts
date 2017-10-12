@@ -17,7 +17,7 @@ export class SignupComponent implements OnInit {
     this.authService.signup(this.email, this.password);
     this.email = this.password = '';
     console.log("signed up")
-    this.router.navigate(['/room']);
+    this.router.navigate(['/game']);
   }
 
   backtologin() {

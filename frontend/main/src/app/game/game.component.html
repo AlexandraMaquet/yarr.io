@@ -1,1 +1,47 @@
-<div id="phaser-example"></div>
+<!-- SIDEBAR -->
+
+<div  *ngIf="openMenu" class="menu-sidebar animated fadeInLeft" id="openMenu">
+    <div class="content-sidebar">
+        <!-- SIDEBAR USERPIC -->
+        <div class="profile-img-container">
+            <img id="userAvatar" src="../assets/img/user.png" class="img-responsive" />
+        </div>
+        <!-- SIDEBAR USER TITLE -->
+        <div class="profile-usertitle">
+            <div class="profile-usertitle-name">
+                Bonjour
+            </div>
+            <div *ngIf="getDisplayName() != null" id="username" class="profile-usertitle-job animated fadeIn">
+                
+            </div>
+            <div *ngIf="getDisplayName() == null" id="username" class="profile-usertitle-job animated fadeIn">
+                Guest
+            </div>
+            <div>
+                <button (click)="editProfil=!editProfil" id="btnEdit" type="button" class="btn-sidebar">
+                    <i class="fa fa-edit"></i>
+                    Edit Profil</button>
+            </div>
+            <div>
+                <button (click)="logout()" id="btnLogout" type="button" class="btn-sidebar">
+                    <i class="fa fa-sign-out"></i>
+                    Log Out</button>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+    <!-- END SIDEBAR -->
+
+
+    <!-- Page Content -->
+    <div id="content">
+        <button *ngIf="!openMenu" (click)="openMenu=!openMenu" type="button" id="sidebarCollapse" class="animated fadeIn btn open-menu">
+                <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+        </button>
+        <button *ngIf="openMenu" (click)="openMenu=!openMenu" type="button" id="sidebarCollapse" class="animated fadeIn btn open-menu">
+                <i class="fa fa-times fa-2x" aria-hidden="true"></i>
+        </button>
+        <div id="phaser-example"></div>
+    </div>

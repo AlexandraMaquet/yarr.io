@@ -1,3 +1,71 @@
-div{
-    display: inline-block
+/* SIDEBAR */
+
+.new-game {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    color: #7289DA;
+    font-weight: 100;
 }
+.btn-sidebar {
+    -webkit-transition: all .12s ease-out;
+    background-color: #2F3438;
+    border-radius: 3px;
+    border-color: transparent;
+    color: #fff;
+    cursor: pointer;
+    font-size: 15px;
+    padding: 10px 20px;
+    position: relative;
+    top: 0;
+    width: 100%;
+    transition: all .12s ease-out;
+}
+.menu-sidebar {
+    position: fixed;
+    height: 100vh;
+    z-index: 100;
+    background-color: #23272A;
+    width: 250px;
+}
+.content-sidebar {
+    padding: 15px;
+    text-align: center;
+}
+/* Profile pic */
+
+.profile-img-container {
+    display: inline-block;
+    height: 200px;
+    width: 200px;
+    border-radius: 100%;
+    margin: 0 10px;
+    position: relative;
+    overflow: hidden;
+}
+/* Users info */
+
+.profile-usertitle {
+    margin-top: 20px;
+}
+.profile-usertitle-name {
+    color: #7289DA;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+.profile-usertitle-job {
+    text-transform: uppercase;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.open-menu{
+    position: fixed;
+    z-index: 1000;
+    background-color: transparent;
+    color: white;
+}
+

@@ -1,24 +1,24 @@
 <div class="main">
   <div id="home" class="container login-home animated fadeIn">
 
-    <h1>GONP</h1>
-
-    <div>
-      <a class="btn btn-block btn-social btn-facebook" (click)="loginFacebook()">
-              <span class="fa fa-facebook fa-fw"></span> Connect with Facebook
-            </a>
-      <a class="btn btn-block btn-social btn-google" (click)="loginGoogle()">
-                <span class="fa fa-google fa-fw"></span> Connect in with Google
-              </a>
-      <a class="btn btn-block btn-social btn-vk" (click)="signup()">
-                  <span class="fa fa-envelope fa-fw"></span> Sign up with Email
-                </a>
-
-    </div>
-
     <div class="btn-group-home">
       <button id="btnLogin" type="button" class="btn-home" (click)="loginAnonymous()">Play as Guest</button>
+      <button (click)="register=!register" id="btnRegister" type="button" class="btn-home">Register</button>
     </div>
+
+
+      <div *ngIf="register" class="animated fadeInDown">
+          <a class="btn btn-block btn-social btn-facebook" (click)="loginFacebook()">
+                  <span class="fa fa-facebook fa-fw"></span> Connect with Facebook
+                </a>
+          <a class="btn btn-block btn-social btn-google" (click)="loginGoogle()">
+                    <span class="fa fa-google fa-fw"></span> Connect in with Google
+                  </a>
+          <a class="btn btn-block btn-social btn-vk" (click)="signup()">
+                      <span class="fa fa-envelope fa-fw"></span> Sign up with Email
+                    </a>
+    
+        </div>
 
     <span class="createaccount" (click)="loginEmail()">Already an account ? <strong>Log in here</strong></span>
 

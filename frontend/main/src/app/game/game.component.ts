@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { AuthService } from '../auth.service';
 import { Observable } from 'rxjs/Observable';
 import * as socketIo from 'socket.io-client';
 
@@ -16,9 +17,10 @@ declare var Phaser: any;
   styleUrls: ['./game.component.css']
 })
 export class GameComponent implements OnInit {
+    user: firebase.User;
+    username : string;
 
-
-  constructor() {
+  constructor(public authService: AuthService,  private router: Router) {
     this.buildPhaserRenderer();
   }
 
@@ -26,10 +28,10 @@ export class GameComponent implements OnInit {
 
     var ASSET_URL = "https://cdn.glitch.com/d371c629-b475-4d7b-88bc-b2558ae406a4%2F"
     //We first initialize the phaser game object
-    var WINDOW_WIDTH = 750;
-    var WINDOW_HEIGHT = 500;
+    var WINDOW_WIDTH = (window.innerWidth * window.devicePixelRatio);
+    var WINDOW_HEIGHT = (window.innerHeight * window.devicePixelRatio);
     var game = new Phaser.Game(WINDOW_WIDTH, WINDOW_HEIGHT, Phaser.AUTO, '', {preload:preload, create:create, update:GameLoop} );
-    var WORLD_SIZE = {w:750,h:500};
+    var WORLD_SIZE = {w:WINDOW_WIDTH,h:WINDOW_HEIGHT};
   
     var water_tiles = [];
     var bullet_array = [];
@@ -54,7 +56,7 @@ export class GameComponent implements OnInit {
             dir = dir * Math.PI * 2;
             this.sprite.rotation += dir * 0.1;
             // Move forward
-            if(game.input.keyboard.isDown(Phaser.Keyboard.W) || game.input.keyboard.isDown(Phaser.Keyboard.UP)){
+            if(game.input.keyboard.isDown(Phaser.Keyboard.W) || game.input.keyboard.isDown(Phaser.Keyboard.Z) || game.input.keyboard.isDown(Phaser.Keyboard.UP)){
                 this.speed_x += Math.cos(this.sprite.rotation + Math.PI/2) * this.speed;
                 this.speed_y += Math.sin(this.sprite.rotation + Math.PI/2) * this.speed;
             }
@@ -254,6 +256,43 @@ export class GameComponent implements OnInit {
   }
 
 
-  ngOnInit() {
+  updateUser(){
+    if (this.user) {
+      // User is signed in
+      this.user.updateProfile({
+          displayName: this.username,
+          photoURL : ""
+      })
+    }
   }
+  
+    getDisplayName() {
+      if (this.user) {
+        return this.user.displayName;
+      } else {
+      return "";
+      }
+    }
+  
+    logout() {
+      this.authService.logout();
+      location.reload();
+    }
+  
+    authStateChanged(firebaseUser) {
+      if (firebaseUser) {
+        console.log(firebaseUser, firebaseUser.displayName);
+  
+      }
+      else {
+        console.log("not logged")
+      }
+    }
+  
+    ngOnInit() {
+      this.authService.user.do((user) => {
+        console.log(user);
+        this.user = user;
+      }).subscribe();
+    }
 }

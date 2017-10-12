@@ -19,7 +19,7 @@ export class AuthService {
       .createUserWithEmailAndPassword(email, password)
       .then(value => {
         console.log('Success!');
-        this.router.navigate(['/room'])
+        this.router.navigate(['/game'])
       })
       .catch(err => {
         console.log('Something went wrong:', err.message);
@@ -32,7 +32,7 @@ export class AuthService {
       .signInWithEmailAndPassword(email, password)
       .then(value => {
         console.log('Nice, it worked!');
-        this.router.navigate(['/room'])
+        this.router.navigate(['/game'])
       })
       .catch(err => {
         console.log('Something went wrong:', err.message);
@@ -49,7 +49,7 @@ export class AuthService {
     this.firebaseAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
       .then(value => {
         console.log('Nice, it worked!');
-        this.router.navigate(['/room'])
+        this.router.navigate(['/game'])
       })
       .catch(function (error) {
         alert(error + " Please try again")
@@ -60,7 +60,7 @@ export class AuthService {
     this.firebaseAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
       .then(value => {
         console.log('Nice, it worked!');
-        this.router.navigate(['/room'])
+        this.router.navigate(['/game'])
       })
       .catch(function (error) {
         alert(error + " Please try again")
@@ -71,7 +71,7 @@ export class AuthService {
     this.firebaseAuth.auth.signInAnonymously()
       .then(value => {
         console.log('Nice, it worked!');
-        this.router.navigate(['/room'])
+        this.router.navigate(['/game'])
       })
       .catch(function (error) {
         alert(error + " Please try again")

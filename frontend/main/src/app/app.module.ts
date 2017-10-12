@@ -8,7 +8,6 @@ import { AuthGuard } from './authguard.service';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { RoomComponent } from './room/room.component';
 import { routes } from './app.routes';
 import { SignupComponent } from './signup/signup.component';
 import { EmailComponent } from './email/email.component';
@@ -21,7 +20,6 @@ import * as io from 'socket.io-client';
   declarations: [
     AppComponent,
     LoginComponent,
-    RoomComponent,
     SignupComponent,
     EmailComponent,
     GameComponent,

@@ -19,6 +19,7 @@ declare var Phaser: any;
 export class GameComponent implements OnInit {
     user: firebase.User;
     username : string;
+    openMenu = false;
 
   constructor(public authService: AuthService,  private router: Router) {
     this.buildPhaserRenderer();

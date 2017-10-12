@@ -1,5 +1,11 @@
-import {Environment} from './environment.model';
-export const environment: Environment = {
+export const environment = {
   production: true,
-  api: 'http://demo.tsmean.com:4242/api/v1/'
+  firebase: {
+    apiKey: "AIzaSyARbvndfltC_SxaJPcy6utxz5p9OTQXiWk",
+    authDomain: "gonpthegame.firebaseapp.com",
+    databaseURL: "https://gonpthegame.firebaseio.com",
+    projectId: "gonpthegame",
+    storageBucket: "gonpthegame.appspot.com",
+    messagingSenderId: "540782350272"
+  }
 };

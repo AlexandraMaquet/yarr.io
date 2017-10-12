@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { EmailComponent } from './email/email.component';
-import { RoomComponent } from './room/room.component';
 import { GameComponent } from './game/game.component';
 
 
@@ -17,7 +16,6 @@ export const router: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
     { path: 'email', component: EmailComponent },
-    { path: 'room', component: RoomComponent, canActivate: [AuthGuard]},
     { path: 'game', component: GameComponent, canActivate: [AuthGuard]},
 ]
 

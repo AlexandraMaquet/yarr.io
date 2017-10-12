@@ -31,7 +31,6 @@ export class AppComponent {
 
   ngOnInit():void {
     const socket = socketIo(environment.socketHost);
-
     socket.on('hello', (data) => console.log(data));
 
   }

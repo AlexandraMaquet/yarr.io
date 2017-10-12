@@ -3,6 +3,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AuthService } from '../auth.service';
 import { Observable } from 'rxjs/Observable';
+import { environment } from '../../environments/environment';
 import * as socketIo from 'socket.io-client';
 
 import { Router } from '@angular/router';
@@ -137,7 +138,7 @@ export class GameComponent implements OnInit {
         game.world.setBounds(0, 0, WORLD_SIZE.w, WORLD_SIZE.h);
         game.camera.x = player.sprite.x - WINDOW_WIDTH/2;
         game.camera.y = player.sprite.y - WINDOW_HEIGHT/2;
-        socket = socketIo('http://localhost:3000'); // This triggers the 'connection' event on the server
+        socket = socketIo(environment.socketHost); // This triggers the 'connection' event on the server
         socket.emit('new-player',{x:player.sprite.x,y:player.sprite.y,angle:player.sprite.rotation,type:1})
         // Listen for other players connecting
 

@@ -1,10 +1,13 @@
 # [yarr.io](http://yarr.paulcailly.fr)
 
-[yarr.io](http://yarr.paulcailly.fr) is open source multiplayer pirates games made with [Phaser](http://phaser.io/), [Socket.IO](https://socket.io/), [Firebase](https://firebase.google.com/) and [Angular 4](https://angular.io). 
+###### [yarr.io](http://yarr.paulcailly.fr) is open source multiplayer pirate games made with [Phaser](http://phaser.io/), [Socket.IO](https://socket.io/), [Firebase](https://firebase.google.com/) and [Angular 4](https://angular.io).
+
+### Prerequisits
+- [Node.js](https://nodejs.org/) (v6 or v8) & npm (v3 or v5)
+- ts-node ```(npm install -g ts-node)```
+- [Angular CLI](https://github.com/angular/angular-cli)
 
 ### Installation
-yarr requires [Node.js](https://nodejs.org/) v8+ to run.
-
 Install the dependencies and devDependencies and start the frontend.
 
 ```sh

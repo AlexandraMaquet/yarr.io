@@ -51,6 +51,7 @@ export class GameComponent implements OnInit {
         life:10,
         update: function(){
             // Lerp rotation towards mouse
+            if (player.sprite.health > -3){
             var dx = (game.input.mousePointer.x + game.camera.x) - this.sprite.x;
             var dy = (game.input.mousePointer.y + game.camera.y) - this.sprite.y;
             var angle = Math.atan2(dy,dx) - Math.PI/2;
@@ -58,10 +59,13 @@ export class GameComponent implements OnInit {
             dir -= Math.round(dir);
             dir = dir * Math.PI * 0.6;
             this.sprite.rotation += dir * 0.1;
+            }
             // Move forward
             if(game.input.keyboard.isDown(Phaser.Keyboard.W) || game.input.keyboard.isDown(Phaser.Keyboard.Z) || game.input.keyboard.isDown(Phaser.Keyboard.UP)){
+                if (player.sprite.health > -3){
                 this.speed_x += Math.cos(this.sprite.rotation + Math.PI/2) * this.speed;
                 this.speed_y += Math.sin(this.sprite.rotation + Math.PI/2) * this.speed;
+                }
             }
             
             this.sprite.x += this.speed_x;
@@ -71,7 +75,7 @@ export class GameComponent implements OnInit {
             
             // Shoot bullet 
             if(game.input.activePointer.leftButton.isDown && !this.shot && game.time.now > firingTimer){
-        
+                if (player.sprite.health > -3){
                 var speed_x = Math.cos(this.sprite.rotation + Math.PI/2) * 5;
                 var speed_y = Math.sin(this.sprite.rotation + Math.PI/2) * 5;
                 /* The server is now simulating the bullets, clients are just rendering bullet locations, so no need to do this anymore
@@ -84,7 +88,8 @@ export class GameComponent implements OnInit {
                 this.shot = true;
                 // Tell the server we shot a bullet 
                 socket.emit('shoot-bullet',{x:this.sprite.x,y:this.sprite.y,angle:this.sprite.rotation,speed_x:speed_x,speed_y:speed_y})
-                firingTimer = game.time.now + 1000;
+                firingTimer = game.time.now + 400;
+                }
             }
 
             if(!game.input.activePointer.leftButton.isDown) this.shot = false;
@@ -220,11 +225,11 @@ export class GameComponent implements OnInit {
                 player.sprite.alpha = 0;
                 player.sprite.health--;
                 console.log(player.sprite.health)
-                if (player.sprite.health < -10){
+                if (player.sprite.health < -3){
                     console.log("game over")
-                    stateText.text=" GAME OVER \n Click to restart";
+                    stateText.text="GAME OVER \n Click to restart";
                     stateText.visible = true;
-            
+                    player.sprite.loadTexture('ship4_1');
                     //the "click to restart" handler
                     game.input.onTap.addOnce(restart,this);
                 }
@@ -241,6 +246,7 @@ export class GameComponent implements OnInit {
             
             //hides the text
             stateText.visible = false;
+            location.reload()
         
         }
 

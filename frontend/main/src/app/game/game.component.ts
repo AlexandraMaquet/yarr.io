@@ -34,10 +34,10 @@ export class GameComponent implements OnInit {
     var WINDOW_HEIGHT = (window.innerHeight * window.devicePixelRatio);
     var game = new Phaser.Game(WINDOW_WIDTH, WINDOW_HEIGHT, Phaser.AUTO, '', {preload:preload, create:create, update:GameLoop} );
     var WORLD_SIZE = {w:1000,h:1000};
-  
+    var firingTimer = 0;
     var water_tiles = [];
     var bullet_array = [];
-  
+    var stateText;
     var socket; //Declare it in this scope, initialize in the `create` function
     var other_players = {};
   
@@ -48,7 +48,7 @@ export class GameComponent implements OnInit {
         speed:0.2, // This is the parameter for how fast it should move 
         friction:0.95,
         shot:false,
-        life:5,
+        life:10,
         update: function(){
             // Lerp rotation towards mouse
             var dx = (game.input.mousePointer.x + game.camera.x) - this.sprite.x;
@@ -70,7 +70,7 @@ export class GameComponent implements OnInit {
             this.speed_y *= this.friction;
             
             // Shoot bullet 
-            if(game.input.activePointer.leftButton.isDown && game.input.activePointer.leftButton.timeDown > 30000 && !this.shot){
+            if(game.input.activePointer.leftButton.isDown && !this.shot && game.time.now > firingTimer){
         
                 var speed_x = Math.cos(this.sprite.rotation + Math.PI/2) * 5;
                 var speed_y = Math.sin(this.sprite.rotation + Math.PI/2) * 5;
@@ -84,12 +84,14 @@ export class GameComponent implements OnInit {
                 this.shot = true;
                 // Tell the server we shot a bullet 
                 socket.emit('shoot-bullet',{x:this.sprite.x,y:this.sprite.y,angle:this.sprite.rotation,speed_x:speed_x,speed_y:speed_y})
+                firingTimer = game.time.now + 1000;
             }
+
             if(!game.input.activePointer.leftButton.isDown) this.shot = false;
             // To make player flash when they are hit, set player.spite.alpha = 0
             if(this.sprite.alpha < 1){
                 this.sprite.alpha += (1 - this.sprite.alpha) * 0.16;
-                this.life -= 1;
+   
             } else {
                 this.sprite.alpha = 1;
             }
@@ -127,8 +129,13 @@ export class GameComponent implements OnInit {
         game.load.image('bullet', ASSET_URL + 'cannon_ball.png');
         game.load.image('water', ASSET_URL + 'water_tile.png');
         
+        
     }
     function create(){
+        //  Text
+    stateText = game.add.text(game.world.centerX,game.world.centerY,' ', { font: '84px Arial', fill: '#fff' });
+    stateText.anchor.setTo(0.5, 0.5);
+    stateText.visible = false;
         // Create water tiles 
         for(var i=0;i<=WORLD_SIZE.w/64+1;i++){
             for(var j=0;j<=WORLD_SIZE.h/64+1;j++){
@@ -211,8 +218,16 @@ export class GameComponent implements OnInit {
             if(id == socket.id){
                 //If this is you
                 player.sprite.alpha = 0;
+                player.sprite.health--;
                 console.log(player.sprite.health)
-
+                if (player.sprite.health < -10){
+                    console.log("game over")
+                    stateText.text=" GAME OVER \n Click to restart";
+                    stateText.visible = true;
+            
+                    //the "click to restart" handler
+                    game.input.onTap.addOnce(restart,this);
+                }
             } else {
                 // Find the right player 
                 other_players[id].alpha = 0;
@@ -220,6 +235,15 @@ export class GameComponent implements OnInit {
             }
         })
     }
+    function restart () {
+        
+            //  A new level starts
+            
+            //hides the text
+            stateText.visible = false;
+        
+        }
+
     function GameLoop(){
         
         player.update();

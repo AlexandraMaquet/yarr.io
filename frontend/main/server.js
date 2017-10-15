@@ -70,7 +70,7 @@ function ServerGameLoop(){
         var dx = players[id].x - bullet.x; 
         var dy = players[id].y - bullet.y;
         var dist = Math.sqrt(dx * dx + dy * dy);
-        if(dist < 70 && dist > 68){
+        if(dist < 70 && dist > 67){
           io.emit('player-hit',id); // Tell everyone this player got hit
         }
       }

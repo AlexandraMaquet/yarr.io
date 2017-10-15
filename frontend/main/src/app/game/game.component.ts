@@ -40,7 +40,9 @@ export class GameComponent implements OnInit {
         var stateText;
         var socket; //Declare it in this scope, initialize in the `create` function
         var other_players = {};
-
+        var healthpack = {
+            sprite: null,//Will hold the sprite when it's created 
+        };
 
         var player = {
             sprite: null,//Will hold the sprite when it's created 
@@ -133,6 +135,7 @@ export class GameComponent implements OnInit {
 
             game.load.image('bullet', ASSET_URL + 'cannon_ball.png');
             game.load.image('water', ASSET_URL + 'water_tile.png');
+            game.load.image('healthpack', ASSET_URL + 'healthpack.png');
 
 
         }
@@ -164,7 +167,14 @@ export class GameComponent implements OnInit {
             game.camera.x = player.sprite.x - WINDOW_WIDTH / 2;
             game.camera.y = player.sprite.y - WINDOW_HEIGHT / 2;
             socket = socketIo(environment.socketHost); // This triggers the 'connection' event on the server
-            socket.emit('new-player', { x: player.sprite.x, y: player.sprite.y, angle: player.sprite.rotation, type: 1 })
+            socket.emit('new-player', { x: player.sprite.x, y: player.sprite.y, angle: player.sprite.rotation, type: 1 });
+
+            // Create healthpack
+            healthpack.sprite = game.add.sprite(Math.random() * WORLD_SIZE.w / 2 + WORLD_SIZE.w / 2, Math.random() * WORLD_SIZE.h / 2 + WORLD_SIZE.h / 2, 'healthpack');
+            healthpack.sprite.anchor.setTo(0.5, 0.5);
+            socket.emit('new-healthpack', { x: healthpack.sprite.x, y: healthpack.sprite.y});
+
+
 
             // Listen for other players connecting
 
@@ -227,10 +237,10 @@ export class GameComponent implements OnInit {
                     //If this is you
                     player.sprite.alpha = 0;
                     player.sprite.health--;
-                    if (player.sprite.health < 0 && player.sprite.health > -3){
+                    if (player.sprite.health < 0 && player.sprite.health > -3) {
                         player.sprite.loadTexture('ship2_1');
                     }
-                    if (player.sprite.health < -3 && player.sprite.health > -5){
+                    if (player.sprite.health < -3 && player.sprite.health > -5) {
                         player.sprite.loadTexture('ship3_1');
                     }
                     if (player.sprite.health < -5) {
@@ -245,16 +255,16 @@ export class GameComponent implements OnInit {
                     // Find the right player
                     other_players[id].alpha = 0;
                     other_players[id].health--;
-                    if (other_players[id].health < 0 && other_players[id].health > -3){
+                    if (other_players[id].health < 0 && other_players[id].health > -3) {
                         other_players[id].loadTexture('ship2_6');
                     }
-                    if (other_players[id].health < -3 && other_players[id].health > -5){
+                    if (other_players[id].health < -3 && other_players[id].health > -5) {
                         other_players[id].loadTexture('ship3_6');
                     }
-                    if (other_players[id].health < -5){
+                    if (other_players[id].health < -5) {
                         other_players[id].loadTexture('ship4_6');
                     }
-                    
+
                 }
             })
         }

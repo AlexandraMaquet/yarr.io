@@ -1,6 +1,9 @@
 # [yarr.io](http://yarr.paulcailly.fr)
+[![NPM version](https://badge.fury.io/js/badge-list.svg)](http://badge.fury.io/js/badge-list) [![Dependency Status](https://david-dm.org/boennemann/badges.svg)](https://david-dm.org/boennemann/badges) [![devDependency Status](https://david-dm.org/boennemann/badges/dev-status.svg)](https://david-dm.org/boennemann/badges#info=devDependencies) 
+[![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php) [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 
-###### [yarr.io](http://yarr.paulcailly.fr) is open source multiplayer pirate games made with [Phaser](http://phaser.io/), [Socket.IO](https://socket.io/), [Firebase](https://firebase.google.com/) and [Angular 4](https://angular.io).
+
+###### [yarr.io](http://yarr.paulcailly.fr) is a multiplayer pirates game made with [Phaser](http://phaser.io/), [Socket.IO](https://socket.io/), [Firebase](https://firebase.google.com/) and [Angular 4](https://angular.io).
 
 ### Prerequisits
 - [Node.js](https://nodejs.org/) (v6 or v8) & npm (v3 or v5)

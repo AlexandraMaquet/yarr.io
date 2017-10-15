@@ -10,6 +10,10 @@ h1 {
     font-size: 48px;
 }
 
+img{
+    margin-bottom: 45px;
+}
+
 .btn{
     width: 40vh;
     height: 45px;

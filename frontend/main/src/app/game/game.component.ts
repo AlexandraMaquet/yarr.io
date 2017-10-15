@@ -48,7 +48,6 @@ export class GameComponent implements OnInit {
         speed:0.2, // This is the parameter for how fast it should move 
         friction:0.95,
         shot:false,
-        life:10,
         update: function(){
             // Lerp rotation towards mouse
             if (player.sprite.health > -3){
@@ -137,10 +136,13 @@ export class GameComponent implements OnInit {
         
     }
     function create(){
-        //  Text
-    stateText = game.add.text(game.world.centerX,game.world.centerY,' ', { font: '84px Arial', fill: '#fff' });
-    stateText.anchor.setTo(0.5, 0.5);
-    stateText.visible = false;
+        
+    //  Text
+        var style = { font: "32px Arial", fill: "#ff0044"};
+        stateText = game.add.text(0, 0, "- text on a sprite -\ndrag me", style);
+        stateText.anchor.setTo(0.5, 0.5);
+        stateText.visible = false;
+
         // Create water tiles 
         for(var i=0;i<=WORLD_SIZE.w/64+1;i++){
             for(var j=0;j<=WORLD_SIZE.h/64+1;j++){
@@ -252,12 +254,15 @@ export class GameComponent implements OnInit {
 
     function GameLoop(){
         
+        
         player.update();
         // Move camera with player 
         var camera_x = player.sprite.x - WINDOW_WIDTH/2;
         var camera_y = player.sprite.y - WINDOW_HEIGHT/2;
         game.camera.x += (camera_x - game.camera.x) * 0.08;
         game.camera.y += (camera_y - game.camera.y) * 0.08;
+        stateText.x = player.sprite.x;
+        stateText.y = player.sprite.y;
       
         // Each player is responsible for bringing their alpha back up on their own client 
         // Make sure other players flash back to alpha = 1 when they're hit 

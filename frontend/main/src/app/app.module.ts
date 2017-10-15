@@ -12,7 +12,6 @@ import { routes } from './app.routes';
 import { SignupComponent } from './signup/signup.component';
 import { EmailComponent } from './email/email.component';
 import { GameComponent } from './game/game.component';
-import { PongComponent } from './pong/pong.component';
 import { AngularFireDatabase} from 'angularfire2/database';
 import * as io from 'socket.io-client';
 
@@ -23,7 +22,6 @@ import * as io from 'socket.io-client';
     SignupComponent,
     EmailComponent,
     GameComponent,
-    PongComponent
   ],
   imports: [
     BrowserModule,

@@ -10,6 +10,10 @@ h1 {
     font-size: 48px;
 }
 
+img{
+    margin-bottom: 45px;
+}
+
 .btn{
     width: 40vh;
     height: 45px;
@@ -38,7 +42,7 @@ h1 {
 }
 .btn-home {
     -webkit-transition: all .12s ease-out;
-    background-color: #7289da;
+    background-color: #99AAB5;
     border-radius: 3px;
     border-color: transparent;
     color: #fff;
@@ -52,10 +56,15 @@ h1 {
 }
 
 .btn-home:hover {
-    background-color: rgba(114, 138, 218, 0.75);
+    background-color: rgba(153, 170, 181, 0.75)
 }
-.signup {
-    background-color: #99AAB5;
+
+.btn-register {
+    background-color: #7289da;
+}
+
+.btn-register:hover {
+    background-color: rgba(114, 138, 218, 0.75);
 }
 
 /* FORMS */

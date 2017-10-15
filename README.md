@@ -28,6 +28,9 @@ $ node server.js
 
 yarr is now available at http://localhost:4200, enjoy !
 
+### Development
+[yarr.io](http://yarr.paulcailly.fr) was a 3 weeks project at [Wild Code School](https://wildcodeschool.fr/) led by [Alexandra Maquet](https://github.com/AlexandraMaquet) and myself under the supervision of our instructor [Victor Leduc](https://github.com/victorleduc).
+
 ### License
 MIT
 
